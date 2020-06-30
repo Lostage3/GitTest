@@ -21,7 +21,7 @@ public class GitScript : MonoBehaviour
         Movement();
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            if (grounded != true)
+            if (grounded == true)
             {
                 Jump();
             }
@@ -40,5 +40,18 @@ public class GitScript : MonoBehaviour
     {
         rb.AddForce(new Vector3(0, 1, 0) * jumpVelocity, ForceMode.Impulse);
     }
-   
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (plane)
+        {
+            grounded = true;
+        }
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        if (plane)
+        {
+            grounded = false;
+        }
+    }
 }
