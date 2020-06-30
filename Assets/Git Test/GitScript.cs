@@ -1,18 +1,22 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GitScript : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public float speed = 0.1f;
+
+    private void Update()
     {
-        
+        Movement();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Movement()
     {
-        
+        float hor = Input.GetAxis("Horizontal");
+        float ver = Input.GetAxis("Vertical");
+
+        transform.position += new Vector3(hor, 0, ver) * speed * Time.deltaTime;
     }
 }
