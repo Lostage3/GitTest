@@ -6,10 +6,26 @@ using UnityEngine;
 public class GitScript : MonoBehaviour
 {
     public float speed = 0.1f;
+    Rigidbody rb;
+    public float jumpVelocity = 6;
+    public bool grounded;
+    public GameObject plane;
+
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody>();   
+    }
 
     private void Update()
     {
         Movement();
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            if (grounded != true)
+            {
+                Jump();
+            }
+        }
     }
 
     private void Movement()
@@ -17,6 +33,12 @@ public class GitScript : MonoBehaviour
         float hor = Input.GetAxis("Horizontal");
         float ver = Input.GetAxis("Vertical");
 
-        transform.position += new Vector3(hor, 0, ver) * speed * Time.deltaTime;
+        
+        rb.AddForce(new Vector3(hor, 0, ver) * speed * Time.deltaTime, ForceMode.Impulse);
     }
+    void Jump()
+    {
+        rb.AddForce(new Vector3(0, 1, 0) * jumpVelocity, ForceMode.Impulse);
+    }
+   
 }
