@@ -10,6 +10,7 @@ public class GitScript : MonoBehaviour
     public float jumpVelocity = 6;
     public bool grounded;
     public GameObject plane;
+    public int count;
 
     private void Start()
     {
@@ -53,5 +54,10 @@ public class GitScript : MonoBehaviour
         {
             grounded = false;
         }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        Destroy(other.gameObject);
+        count++;
     }
 }
