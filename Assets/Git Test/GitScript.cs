@@ -11,6 +11,7 @@ public class GitScript : MonoBehaviour
     public bool grounded;
     public GameObject plane;
     public int count;
+    float moveSpeed;
 
     private void Start()
     {
@@ -34,8 +35,15 @@ public class GitScript : MonoBehaviour
         float hor = Input.GetAxis("Horizontal");
         float ver = Input.GetAxis("Vertical");
 
-        
-        rb.AddForce(new Vector3(hor, 0, ver) * speed * Time.deltaTime, ForceMode.Impulse);
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            moveSpeed = speed * 2;
+        }
+        else
+        {
+            moveSpeed = speed;
+        }
+        rb.AddForce(new Vector3(hor, 0, ver) * moveSpeed * Time.deltaTime, ForceMode.Impulse);
     }
     void Jump()
     {
