@@ -11,6 +11,7 @@ public class CountRobot : MonoBehaviour
     float instanceTimer = 0;
     public float maxTime = 2;
     public int collectibleCount;
+    public float speed = 2;
 
     public GameObject collectObject;
 
@@ -66,13 +67,14 @@ public class CountRobot : MonoBehaviour
         if (collectObject != null)
         {
             transform.position += new Vector3(collectObject.transform.position.x, 0, collectObject.transform.position.z);
-            if (transform.position.x == collectObject.transform.position.x & transform.position.y != collectObject.transform.position.y & transform.position.z == collectObject.transform.position.z)
+            if (transform.position.x == collectObject.transform.position.x && transform.position.y != collectObject.transform.position.y && transform.position.z == collectObject.transform.position.z)
             {
                 state = State.Vertical;
                 Debug.Log("Hor > Jump");
             }
-            if (transform.position.x == collectObject.transform.position.x & transform.position.y == collectObject.transform.position.y & transform.position.z == collectObject.transform.position.z)
+            if (transform.position == collectObject.transform.position)
             {
+                transform.position += new Vector3(0, 0, 0);
                 state = State.Collect;
                 Debug.Log("Hor > Collect");
             }
