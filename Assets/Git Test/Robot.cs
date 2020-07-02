@@ -5,7 +5,6 @@ using UnityEngine;
 public class Robot : MonoBehaviour
 {
     public RobotState currentState;
-    
 
     public void Start()
     {
@@ -18,8 +17,10 @@ public class Robot : MonoBehaviour
         currentState.robot = this;
         currentState.OnStateEnter();
     }
-    private void Update()
+    public void Update()
     {
         currentState.OnUpdate();
     }
 }
+
+
